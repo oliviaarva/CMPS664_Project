@@ -4,7 +4,6 @@
 ```
 - project.py
 - online_retail_dataset.csv: CSV file containing the relational dataset
-- project.sql
 ```
   ###  Steps after cloning repository:
   
@@ -18,8 +17,7 @@
   5. To change the dataset:  
     a. Download dataset as a CSV file and store it in the same project folder as ```project.py```.  
     b. Search the ```pd.read_csv()``` function and modify the parameter with the name of your CSV data file (located right below the ```def_main()```). 
-  6. After running ```project.py```, ensure that terminal displays normalized tables and states confirmation that tables were transferred to MySQL Workbench.  
-  7. In **MySQL Workbench**, open ```project.sql``` and run the command "USE project_database;"
-  8. This will now provide an interactive query interface to the MySQL server that will allow you to:  
-    a. insert, update and delete rows within each table  
-    b. Compose sql queries for added table insights 
+  6. After running ```project.py```, the interactive query interface will prompt you to enter a SQL query to:  
+    a. Insert, update and delete rows within each table  
+    b. Compose sql queries for added table insights    
+ 
