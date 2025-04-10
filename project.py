@@ -327,6 +327,24 @@ def create_and_populate_tables(mycursor, normalized_tables):
 
     print("All tables have been created and populated successfully.")
 
+def get_multiline_input(prompt):
+    """
+    Function to get multi-line input from the user.
+    """
+    print(" ")
+    print("Enter your multi-line SQL query including ; (To leave interface, type exit):")
+    lines = []
+    while True:
+        line = input()
+        lines.append(line)
+        tmp_line = line.strip()
+        if tmp_line[len(tmp_line) - 1] == ";":
+            break
+        if "exit" in tmp_line:
+            lines = ""
+            break
+    return "\n".join(lines)
+
 
 def main():
     df = pd.read_csv('online_retail_dataset.csv')
@@ -433,6 +451,25 @@ def main():
     # Commit the changes to the database
     mydbase.commit()
     print(" ")
+
+    while True:
+        print("========== Interactive Query Interface ==========")
+        return_str = get_multiline_input(" ")
+        if return_str == "":
+            break
+        else:
+            # Execute the SQL query
+            try:
+                mycursor.execute(return_str)
+                if return_str.lower().startswith("select"):
+                    results = mycursor.fetchall()
+                    for row in results:
+                        print(row)
+
+                else:
+                    print("Query executed successfully.")
+            except mysql.connector.Error as err:
+                print(f"Error: {err}")
 
     # Close the connection
     mydbase.close()
